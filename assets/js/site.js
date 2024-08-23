@@ -7,17 +7,7 @@ const myAppElement = document.getElementById('app')
 
 makeDummyData()
 buildStatics()
-
-//showList(0)
-
-
-
-// setup statics
-
-
-
-
-
+showList()
 
 function buildStatics() {
 
@@ -26,19 +16,43 @@ function buildStatics() {
 
     myAppElement.innerHTML = `${myHeader}<section id="content"></section>${myFooter}`
 
-    showList()
-
 }
 
-function showList() {
 
-}
 
 function buildHeader() {
-    let myHeader = `<header>Header to complete</header>`
+
+    // data
+    let myListData = myData[myCurrentList]
+
+    // dom element
+
+    let myHeader = `<header><h2>${myListData.name}</h2></header><ul>`
+
+
+
+    myData.forEach((listItem, index) => {
+
+
+        myHeader += `<li onclick="listCallBack(${index})">${listItem.name}</li>`
+    });
+
+    myHeader += `</ul>`
+
+
+
+
     return myHeader
 
 }
+
+function listCallBack(indexClicked) {
+
+
+    myCurrentList = indexClicked
+    showList()
+}
+
 
 function buildFooter() {
 
@@ -48,9 +62,7 @@ function buildFooter() {
 
 
 
-function buildList() {
 
-}
 
 
 
@@ -72,16 +84,14 @@ function makeList(myName) {
 
 // modtager et navn og opretter list item i første to do list
 
-function makeItem(index, myName) {
+function makeItem(myName) {
 
     let myListItem = {
         name: myName,
         status: true
     }
 
-    myData[index].listItems.push(myListItem)
-
-
+    myData[myCurrentList].listItems.push(myListItem)
 }
 
 
@@ -122,6 +132,7 @@ function showList() {
         MyHtml += `<li onclick="itemCallBack(${index})">${listItem.name}</li>`
     });
 
+    MyHtml += `<li onclick="itemCallBack('new')">+</li>`
     MyHtml += `</ul>`
 
     myListElement.innerHTML = MyHtml
@@ -132,11 +143,28 @@ function showList() {
 
 function itemCallBack(indexClicked) {
 
-    if (confirm("delete task!")) {
-        removeItem(myCurrentList, indexClicked)
-        showList()
+    if (indexClicked == "new") {
+
+        let newItem = prompt("tittel", "to do item");
+
+
+        if (newItem == null || newItem == "") {
+
+        } else {
+
+            makeItem(newItem)
+            showList()
+        }
+
+    } else {
+        if (confirm("delete task!")) {
+            removeItem(myCurrentList, indexClicked)
+            showList()
+        }
 
     }
+
+
 }
 
 
@@ -148,14 +176,6 @@ function makeDummyData() {
     makeList("liste 1")
     makeList("liste 2")
 
-    makeItem(0, 'opgave 1')
-    makeItem(0, 'opgave 2')
-    makeItem(0, 'opgave 3')
-    makeItem(0, 'opgave 4')
 
-    makeItem(1, 'opgave 1')
-    makeItem(1, 'opgave 2')
-    makeItem(1, 'opgave 3')
-    makeItem(1, 'opgave 4')
 
 }

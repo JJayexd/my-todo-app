@@ -41,7 +41,7 @@ function buildStatics() {
     // content section
     myHtml += `<section id="content"></section>`
     // footer
-    myHtml += `<footer><img src="assets/img/list.svg" onclick="newListView()"><img src="assets/img/list.svg" onclick="removeListCallback()"></footer>`
+    myHtml += `<footer><img src="assets/img/add.svg" onclick="newListView()"><img src="assets/img/trash.svg" onclick="removeListCallback()"></footer>`
 
     myAppElement.innerHTML = myHtml
     createListMenu()

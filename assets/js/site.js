@@ -5,11 +5,8 @@ let myCurrentList = 0  // index of current list
 // element hvor min app skal leve
 const myAppElement = document.getElementById('app')
 
-
-
 //Controller kode. aplication start funktion
 readMyData()
-
 
 // Controller kode. den spørger om data og handler udfra hvad den får tilbage.
 function readMyData() {
@@ -29,8 +26,6 @@ function readMyData() {
     buildStatics()
     showList()
 }
-
-
 
 // View code. bygger statiske elementer
 function buildStatics() {
@@ -63,7 +58,6 @@ function createListMenu() {
 
 }
 
-
 // Controller kode. callback til vis meny icon i header
 function toggleList() {
     let menuElement = document.getElementById('myMenu')
@@ -76,11 +70,6 @@ function listMenuCallBack(indexClicked) {
     toggleList()
     showList()
 }
-
-
-
-
-
 
 //View kode. viser den aktive liste i content
 function showList() {
@@ -181,15 +170,12 @@ function removeListCallback() {
     showList()
 }
 
-
 //----------------------------------------------------------------------
 // Model kode. gemmer data tilsendt i local storage
 function SaveObject(toDoData) {
     let mySerializedData = JSON.stringify(toDoData)//konverterer modtaget data til string
     localStorage.setItem('savedData', mySerializedData)// gemmer i localStorage
 }
-
-
 
 function ReadObject() {
     // læser data i local storage
@@ -228,7 +214,6 @@ function removeList() {
 
 }
 
-
 //Model kode. modtager et navn og opretter list item i første to do list
 
 function makeItem(myName) {
@@ -243,8 +228,6 @@ function makeItem(myName) {
 
     SaveObject(myData)
 }
-
-
 
 //Model kode. modtager et index for listen, og et index for item, og fjerner dette item fra listen.
 
